@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Inventory Management System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="app-header">
+        <h1>Stock &amp; Inventory Management</h1>
+        <p class="subtitle">Maintain products, track stock in/out, and monitor low inventory</p>
+      </header>
+
+      <main class="app-main">
+        <section class="panel panel-dashboard">
+          <h2>Dashboard</h2>
+          <div class="dashboard-cards">
+            <div class="card">
+              <div class="card-label">Total Products</div>
+              <div id="stat-total-products" class="card-value">0</div>
+            </div>
+            <div class="card">
+              <div class="card-label">Total Quantity</div>
+              <div id="stat-total-quantity" class="card-value">0</div>
+            </div>
+            <div class="card">
+              <div class="card-label">Inventory Value</div>
+              <div id="stat-inventory-value" class="card-value">₹0.00</div>
+            </div>
+            <div class="card warning">
+              <div class="card-label">Low Stock Items</div>
+              <div id="stat-low-stock" class="card-value">0</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="layout-two-column">
+          <section class="panel panel-form">
+            <h2 id="product-form-title">Add / Edit Product</h2>
+            <form id="product-form">
+              <input type="hidden" id="product-id" />
+
+              <div class="form-row">
+                <label for="product-name">Product Name</label>
+                <input id="product-name" type="text" required placeholder="e.g., HP Laptop 15s" />
+              </div>
+
+              <div class="form-row">
+                <label for="product濁">SKU / Code</label>
+                <input id="product-sku" type="text" required placeholder="e.g., LAP-HP-15S" />
+              </div>
+
+              <div class="form-row">
+                <label for="product-category">Category</label>
+                <input id="product-category" type="text" placeholder="e.g., Laptop" />
+              </div>
+
+              <div class="form-row two-col">
+                <div>
+                  <label for="product-quantity">Quantity</label>
+                  <input id="product-quantity" type="number" min="0" step="1" required value="0" />
+                </div>
+                <div>
+                  <label for="product-reorder">Reorder Level</label>
+                  <input id="product-reorder" type="number" min="0" step="1" required value="5" />
+                </div>
+              </div>
+
+              <div class="form-row">
+                <label for="product-price">Unit Price (₹)</label>
+                <input id="product-price" type="number" min="0" step="0.01" required value="0" />
+              </div>
+
+              <div class="form-actions">
+                <button type="submit" class="btn primary" id="btn-save-product">Save Product</button>
+                <button type="button" class="btn" id="btn-reset-form">Clear</button>
+              </div>
+            </form>
+          </section>
+
+          <section class="panel panel-stock">
+            <h2>Stock In / Out</h2>
+            <form id="stock-form">
+              <div class="form-row">
+                <label for="stock-product">Product</label>
+                <select id="stock-product" required>
+                  <option value="">Select product</option>
+                </select>
+              </div>
+              <div class="form-row two-col">
+                <div>
+                  <label for="stock-type">Type</label>
+                  <select id="stock-type" required>
+                    <option value="in">Stock In</option>
+                    <option value="out">Stock Out</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="stock-quantity">Quantity</label>
+                  <input id="stock-quantity" type="number" min="1" step="1" required value="1" />
+                </div>
+              </div>
+              <div class="form-row">
+                <label for="stock-note">Note (optional)</label>
+                <input id="stock-note" type="text" placeholder="e.g., Purchase from supplier, sold to customer" />
+              </div>
+              <div class="form-actions">
+                <button type="submit" class="btn primary">Submit</button>
+              </div>
+            </form>
+
+            <h3>Recent Stock Movements</h3>
+            <table class="table" id="movements-table">
+              <thead>
+                <tr>
+                  <th>Date &amp; Time</th>
+                  <th>Product</th>
+                  <th>Type</th>
+                  <th>Qty</th>
+                  <th>Note</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Filled by JavaScript -->
+              </tbody>
+            </table>
+          </section>
+        </section>
+
+        <section class="panel panel-table">
+          <div class="panel-header">
+            <h2>Products</h2>
+            <div class="panel-header-right">
+              <input
+                id="search-input"
+                class="search-input"
+                type="text"
+                placeholder="Search by name, SKU, or category"
+              />
+            </div>
+          </div>
+          <table class="table" id="products-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>SKU</th>
+                <th>Category</th>
+                <th>Qty</th>
+                <th>Reorder Level</th>
+                <th>Unit Price (₹)</th>
+                <th>Total Value (₹)</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Filled by JavaScript -->
+            </tbody>
+          </table>
+        </section>
+      </main>
+
+      <footer class="app-footer">
+        <span>Data is stored locally in your browser (no server required).</span>
+      </footer>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+  </html>
+
+
